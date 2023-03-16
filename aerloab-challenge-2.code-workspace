@@ -1,0 +1,12 @@
+{
+	"folders": [
+		{
+			"name": "aerloab-challenge-2",
+			"path": "."
+		}
+	],
+	"settings": {
+		"typescript.tsdk": "node_modules/typescript/lib",
+		"typescript.enablePromptUseWorkspaceTsdk": true
+	}
+}

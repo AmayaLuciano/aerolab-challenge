@@ -5,7 +5,7 @@ import React, { FC, useState } from 'react';
 import { RiCopperCoinFill } from 'react-icons/ri';
 import ReactPaginate from 'react-paginate';
 import { useGlobalContext } from '../context/store';
-
+import Swal from 'sweetalert2';
 import { Product } from '../types/types';
 import HighestSortProducts from './HighestSortProducts';
 import LowestSortProducts from './LowestSortProducts';
@@ -21,6 +21,7 @@ const Products: FC<ProductsProps> = ({ data }) => {
   const [productOrder, setProductOrder] = useState<
     'most recent' | 'lowest' | 'highest'
   >('most recent');
+  const [effect, setEffect] = useState(false);
 
   const productsPerPage: number = 16;
   const pagesVisited: number = pageNumber * productsPerPage;
@@ -64,7 +65,9 @@ const Products: FC<ProductsProps> = ({ data }) => {
                 size={'1.2rem'}
               />
             </div>
-            <button className="bg-slate-100 p-2 mt-2 text-gray-500 rounded-lg text-center w-full">
+            <button
+              className={` bg-slate-100 p-2 mt-2 text-gray-500 rounded-lg text-center w-full `}
+            >
               redeem
             </button>
           </>
@@ -89,8 +92,11 @@ const Products: FC<ProductsProps> = ({ data }) => {
               />
             </div>
             <button
-              onClick={() => handleRedeem(products._id)}
-              className="bg-orange-500 p-2 mt-2 w-full text-center rounded-md text-white font-bold hover:bg-orange-400"
+              onClick={() => {
+                handleRedeem(products._id),
+                  Swal.fire('Nice!', `You redeem ${products.name}!`, 'success');
+              }}
+              className={` bg-orange-500 p-2 mt-2 w-full text-center rounded-md text-white font-bold hover:bg-orange-400`}
             >
               redeem
             </button>
@@ -106,7 +112,7 @@ const Products: FC<ProductsProps> = ({ data }) => {
   };
 
   return (
-    <div className="max-w-screen-lg	">
+    <div className="sm:max-w-screen-sm  md:max-w-screen-lg	">
       <div className="mb-8 flex justify-between">
         <div className="flex">
           <h2 className="mt-1 py-2 text-slate-700 border-solid border-r-2 pr-2">
